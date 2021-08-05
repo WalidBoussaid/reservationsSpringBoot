@@ -7,7 +7,4 @@ public interface LocalityRepository extends CrudRepository<Locality, Long> {
     Locality findByPostalCode(String postalCode);
     Locality findByLocality(String locality);
 
-
-
-
 }
