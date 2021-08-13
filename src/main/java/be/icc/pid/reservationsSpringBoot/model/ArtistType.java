@@ -27,7 +27,6 @@ public class ArtistType {
             name = "artist_type_show",
             joinColumns = @JoinColumn(name = "artist_type_id"),
             inverseJoinColumns = @JoinColumn(name = "show_id"))
-
     private List<Show> shows = new ArrayList<>();
 
     protected ArtistType() { }
