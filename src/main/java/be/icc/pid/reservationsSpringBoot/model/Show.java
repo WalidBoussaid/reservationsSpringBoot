@@ -2,6 +2,7 @@ package be.icc.pid.reservationsSpringBoot.model;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.*;
@@ -48,6 +49,10 @@ public class Show {
 
     @OneToMany(targetEntity=Representation.class, mappedBy="show")
     private List<Representation> representations = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "shows")
+    private List<ArtistType> artistTypes = new ArrayList<>();
+
 
 
     public Show() { }
@@ -102,6 +107,10 @@ public class Show {
 
     public String getPosterUrl() {
         return posterUrl;
+    }
+
+    public List<ArtistType> getArtistTypes() {
+        return artistTypes;
     }
 
     public void setPosterUrl(String posterUrl) {
@@ -168,6 +177,24 @@ public class Show {
 
         return this;
     }
+    public Show addArtistType(ArtistType artistType) {
+        if(!this.artistTypes.contains(artistType)) {
+            this.artistTypes.add(artistType);
+            artistType.addShow(this);
+        }
+
+        return this;
+    }
+
+    public Show removeArtistType(ArtistType artistType) {
+        if(this.artistTypes.contains(artistType)) {
+            this.artistTypes.remove(artistType);
+            artistType.getShows().remove(this);
+        }
+
+        return this;
+    }
+
 
     @Override
     public String toString() {
@@ -179,5 +206,5 @@ public class Show {
     }
 
 
-}
+   }
 
