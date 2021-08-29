@@ -21,10 +21,10 @@ public class Locality {
     private String postalCode;
     private String locality;
 
-    @OneToMany( targetEntity= Location.class, mappedBy="locality" )
+    @OneToMany( targetEntity=Location.class, mappedBy="locality" )
     private List<Location> locations = new ArrayList<>();
 
-    protected Locality() { }
+    protected Locality() {	}
 
     public Locality(String postalCode, String locality) {
         this.postalCode = postalCode;

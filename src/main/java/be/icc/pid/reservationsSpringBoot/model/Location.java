@@ -33,8 +33,6 @@ public class Location {
     @OneToMany(targetEntity=Representation.class, mappedBy="location")
     private List<Representation> representations = new ArrayList<>();
 
-
-
     protected Location() { }
 
     public Location(String slug, String designation, String address, Locality locality, String website, String phone) {

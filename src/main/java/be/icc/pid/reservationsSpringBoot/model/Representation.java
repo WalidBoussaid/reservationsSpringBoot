@@ -3,8 +3,6 @@ package be.icc.pid.reservationsSpringBoot.model;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,9 +25,14 @@ public class Representation {
     @JoinColumn(name="show_id", nullable=false)
     private Show show;
 
+    /**
+     * Date de création de la représentation
+     */
     private LocalDateTime when;
 
-
+    /**
+     * Lieu de prestation de la représentation
+     */
     @ManyToOne
     @JoinColumn(name="location_id", nullable=true)
     private Location location;
@@ -40,8 +43,6 @@ public class Representation {
             joinColumns = @JoinColumn(name = "representation_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
     private List<User> users = new ArrayList<>();
-
-
 
     public Representation() { }
 
@@ -100,7 +101,6 @@ public class Representation {
 
         return this;
     }
-
 
     @Override
     public String toString() {

@@ -43,7 +43,7 @@ public class ShowController {
                 collaborateurs.put(at.getType(), new ArrayList<>());
             }
 
-            collaborateurs.get(at.getType()).add(at);
+            collaborateurs.get(at.getType().getType());
         }
 
         model.addAttribute("collaborateurs", collaborateurs);

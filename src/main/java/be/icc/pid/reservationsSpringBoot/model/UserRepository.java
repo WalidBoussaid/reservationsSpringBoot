@@ -2,9 +2,10 @@ package be.icc.pid.reservationsSpringBoot.model;
 
 import java.util.List;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends CrudRepository<User, Long> {
+
+public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findByLastname(String lastname);
 
     User findById(long id);

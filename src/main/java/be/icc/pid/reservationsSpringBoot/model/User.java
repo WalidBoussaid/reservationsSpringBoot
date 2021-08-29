@@ -1,18 +1,12 @@
 package be.icc.pid.reservationsSpringBoot.model;
+import lombok.Data;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-
-import javax.persistence.Table;
-
+import javax.persistence.*;
+@Data
 @Entity
 @Table(name="users")
 public class User {
@@ -20,6 +14,7 @@ public class User {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     private String login;
+    private boolean enabled;
     private String password;
     private String firstname;
     private String lastname;
@@ -33,12 +28,18 @@ public class User {
     @ManyToMany(mappedBy = "users")
     private List<Representation> representations = new ArrayList<>();
 
+    @ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name="user_role",joinColumns = @JoinColumn(name="user_id") ,inverseJoinColumns = @JoinColumn(name="role_id"))
+    private List<Role> role;
+
+
     protected User() {}
 
-    public User(String login, String firstname, String lastname) {
+    public User(String login, String firstname, String lastname, Boolean enabled) {
         this.login = login;
         this.firstname = firstname;
         this.lastname = lastname;
+        this.enabled = isEnabled();
         this.created_at = LocalDateTime.now();
     }
 
@@ -72,6 +73,14 @@ public class User {
 
     public String getLastname() {
         return lastname;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     public void setLastname(String lastname) {
@@ -146,5 +155,9 @@ public class User {
     @Override
     public String toString() {
         return login + "(" + firstname + " " + lastname + ")";
+    }
+
+    public boolean getEnabled() {
+        return enabled;
     }
 }

@@ -1,5 +1,7 @@
 package be.icc.pid.reservationsSpringBoot.model;
 
+import lombok.Data;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +14,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-
+@Data
 @Entity
 @Table(name="roles")
 public class Role {

@@ -1,7 +1,10 @@
 package be.icc.pid.reservationsSpringBoot.model;
 
+
+
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,55 +33,53 @@ public class Type {
     }
 
     public Type(Long id, String type) {
-
-		super();
-                this.id = id;
-                this.type = type;
-                }
+        super();
+        this.id = id;
+        this.type = type;
+    }
 
     public Long getId() {
         return id;
-        }
+    }
 
     public void setId(Long id) {
         this.id = id;
-        }
+    }
 
     public String getType() {
         return type;
-        }
+    }
 
     public void setType(String type) {
         this.type = type;
-        }
+    }
 
     public List<Artist> getArtists() {
         return artists;
-        }
+    }
 
     public Type addArtist(Artist artist) {
         if(!this.artists.contains(artist)) {
-        this.artists.add(artist);
-        artist.addType(this);
+            this.artists.add(artist);
+            artist.addType(this);
         }
 
         return this;
-        }
+    }
 
     public Type removeType(Artist artist) {
         if(this.artists.contains(artist)) {
-        this.artists.remove(artist);
-        artist.getTypes().remove(this);
+            this.artists.remove(artist);
+            artist.getTypes().remove(this);
         }
 
         return this;
-        }
+    }
 
     @Override
     public String toString() {
         return "Type [id=" + id + ", type=" + type + "]";
-        }
+    }
 
 
 }
-

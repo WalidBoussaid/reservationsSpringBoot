@@ -5,8 +5,6 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import com.github.slugify.Slugify;
-
 @Entity
 @Table(name="artist_type")
 public class ArtistType {
@@ -81,8 +79,7 @@ public class ArtistType {
 
     @Override
     public String toString() {
-        return "ArtistType [id=" + id + ", artist=" + artist + ", type=" + type
-                + ", shows=" + shows + "]";
+        return "ArtistType [id=" + id + ", artist=" + artist + ", type=" + type + ", shows=" + shows + "]";
     }
 
 }
